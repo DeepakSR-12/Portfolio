@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid content">
+
+    <div class="row page-header">
+        <h2>Covid-19-Tracker State-section</h2>        
+    </div>
+
+    
+    <div>
+        <button class="btn btn-dark" (click)="getDataFunc()" [class.d-none]="shown" >Get Data</button>        
+    </div>
+
+    <div [class.d-none]="!shown">        
+        <ng-multiselect-dropdown [placeholder]="'Select State'" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect()" [data]="statesArray" [settings]="dropdownSettings" ></ng-multiselect-dropdown>
+    </div>
+    
+
+    <div class="row cards-section" [class.d-none]="!shownChart"  >
+
+
+        <div class="col">
+
+            <a class="card wallet">
+                <div class="overlay"></div>
+            <div class="circle">
+                <p> {{totalConfirmed}} </p>
+            </div>
+            <p>Total Confirmed</p>
+            </a>
+
+        </div>
+
+
+        <div class="col">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+            <a class="card education">
+                <div class="overlay"></div>
+            <div class="circle">
+                <p>{{activeCases}}</p>
+            </div>
+            <p>Active Cases</p>
+            </a>
+        </div>
+
+
+        <div class="col">
+
+            <a class="card credentialing">
+                <div class="overlay"></div>
+            <div class="circle">
+                <p>{{totalRecovered}}</p>
+            </div>
+            <p>Recovered Cases</p>
+            </a>
+
+        </div>
+
+
+
+
+        <div class="col">
+
+
+            <a class="card human-resources">
+                <div class="overlay"></div>
+            <div class="circle">
+                <p>{{totalDeaths}}</p>
+            </div>
+            <p>Total Deaths</p>
+            </a>
+
+            
+
+        </div>
+</div>
+

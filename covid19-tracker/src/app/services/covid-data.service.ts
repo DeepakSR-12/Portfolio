@@ -9,7 +9,8 @@ export class CovidDataService {
 
   constructor(private _http: HttpClient) { }
 
-  _url = 'https://raw.githubusercontent.com/indiacovid19/indiacovid19/master/indiacovid19.json';
+  // _url = 'https://raw.githubusercontent.com/indiacovid19/indiacovid19/master/indiacovid19.json';
+  _url = 'https://api.covid19india.org/data.json';
 
   
   getData(){
