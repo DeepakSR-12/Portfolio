@@ -25,6 +25,11 @@ export class HomeComponent implements OnInit {
   totalConfirmed;
   totalDeaths;
   activeCases;
+  deltaConfirmed;
+  deltaActive;
+  deltaRecovered;
+  deltaDeaths;
+  date;
   shown = false;
 
 
@@ -60,6 +65,13 @@ export class HomeComponent implements OnInit {
     this.totalRecovered = Number(this.actualData.recovered);
     this.totalDeaths = Number(this.actualData.deaths);
     this.totalConfirmed = Number(this.actualData.confirmed);
+
+    this.deltaConfirmed = Number(this.actualData.deltaconfirmed);
+    this.deltaRecovered = Number(this.actualData.deltarecovered);
+    this.deltaDeaths = Number(this.actualData.deltadeaths);
+    this.deltaActive = this.deltaConfirmed - this.deltaRecovered - this.deltaDeaths;
+
+    this.date = this.actualData.lastupdatedtime.split(' ')[0];
     
     console.log(((this.activeCases) / (this.totalConfirmed)*100).toFixed(0));
     
@@ -81,17 +93,20 @@ export class HomeComponent implements OnInit {
       {
         category: "Active",        
         percentage: this.activeCases ,
-        color: am4core.color("#E9D66B")
+        color: am4core.color("#E9D66B"),
+        labelColor : am4core.color("#E9D66B")
       },
       {
         category: "Recovered",        
         percentage: this.totalRecovered,
-        color: am4core.color("#A4C639")
+        color: am4core.color("#A4C639"),
+        labelColor : am4core.color("#A4C639")
       },
       {
         category: "Deaths",      
         percentage: this.totalDeaths,
-        color: am4core.color("#7C0A02")
+        color: am4core.color("#7C0A02"),
+        labelColor : am4core.color("#7C0A02")
       }
     ];
 
@@ -99,7 +114,9 @@ export class HomeComponent implements OnInit {
       let series = chart.series.push(new am4charts.PieSeries3D());
       series.dataFields.value = "percentage";
       series.dataFields.category = "category";
-      series.slices.template.propertyFields.fill = "color";        
+      series.slices.template.propertyFields.fill = "color";    
+      series.labels.template.propertyFields.fill = "labelColor";
+
 
   }
 
@@ -108,7 +125,8 @@ export class HomeComponent implements OnInit {
   stateData(){
     console.log(this.jsonData);
     
-    this.router.navigate(['/states', {queryParams: {jsonData : this.jsonData  }, skipLocationChange: false} ]);
+    // this.router.navigate(['/states', {queryParams: {jsonData : this.jsonData  }, skipLocationChange: false} ]);
+    this.router.navigateByUrl('/states');
   }
 
 }

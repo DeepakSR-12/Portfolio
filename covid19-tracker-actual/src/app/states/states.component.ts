@@ -27,6 +27,11 @@ export class StatesComponent implements OnInit {
   totalDeaths;
   activeCases;
   
+  deltaConfirmed;
+  deltaActive;
+  deltaRecovered;
+  deltaDeaths;
+  date;
 
   
 
@@ -51,6 +56,10 @@ export class StatesComponent implements OnInit {
     this.statesArray = dummyArray.slice(1);
     console.log(this.statesArray);
     
+
+    
+    // console.log(this.date);
+    
     
     
   }
@@ -69,19 +78,22 @@ export class StatesComponent implements OnInit {
         category: "Active",        
         percentage: this.activeCases ,
         // percentage: 50 ,        
-        color: am4core.color("#E9D66B")
+        color: am4core.color("#E9D66B"),
+        labelColor : am4core.color("#E9D66B")
       },
       {
         category: "Recovered",        
         // percentage: 30 ,
         percentage: this.totalRecovered,
-        color: am4core.color("#A4C639")
+        color: am4core.color("#A4C639"),
+        labelColor : am4core.color("#A4C639")
       },
       {
         category: "Deaths",      
         // percentage: 20 ,
         percentage: this.totalDeaths,
-        color: am4core.color("#7C0A02")
+        color: am4core.color("#7C0A02"),
+        labelColor : am4core.color("#7C0A02")
       }
     ];
 
@@ -89,7 +101,8 @@ export class StatesComponent implements OnInit {
       let series = chart.series.push(new am4charts.PieSeries3D());
       series.dataFields.value = "percentage";
       series.dataFields.category = "category";
-      series.slices.template.propertyFields.fill = "color";        
+      series.slices.template.propertyFields.fill = "color";       
+      series.labels.template.propertyFields.fill = "labelColor"; 
 
   }
 
@@ -120,7 +133,16 @@ export class StatesComponent implements OnInit {
     this.totalDeaths = this.actualData.deaths;
     this.totalConfirmed = this.actualData.confirmed;
 
-    console.log(typeof this.actualData);    
+    this.deltaConfirmed = Number(this.actualData.deltaconfirmed);
+    this.deltaRecovered = Number(this.actualData.deltarecovered);
+    this.deltaDeaths = Number(this.actualData.deltadeaths);
+    this.deltaActive = this.deltaConfirmed - this.deltaRecovered - this.deltaDeaths;
+
+    this.date = this.actualData.lastupdatedtime.split(' ')[0];
+    console.log(this.date);
+    
+
+    console.log(this.actualData);    
     this.pieChart();
   }
 

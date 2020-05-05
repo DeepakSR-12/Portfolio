@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StatesComponent } from './states/states.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -17,7 +16,6 @@ import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     NavbarComponent,
     StatesComponent,
     HomeComponent
@@ -25,8 +23,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,    
-    NgMultiSelectDropDownModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [CovidDataService],
   bootstrap: [AppComponent]
