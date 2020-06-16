@@ -1,79 +1,181 @@
-<app-navbar></app-navbar>
+<!-- <body>
+    <div class="bodyPage">  
 
+        <app-navbar></app-navbar>
+        <h2 class="header" style="color: white;">Covid-19-Tracker State-section</h2>        
+        <h5 style="color: white; margin-top: 15px;">Updated Date : {{date}} </h5>
+        
 
-<div class="container-fluid content">
-
-    <div class="row page-header">
-        <h2>Covid-19-Tracker State-section</h2>        
-    </div>
-
-    
-    <div>
-        <button class="btn btn-dark" (click)="getDataFunc()" [class.d-none]="shown" >Get Data</button>        
-    </div>
-
-    <div [class.d-none]="!shown">        
-        <ng-multiselect-dropdown [placeholder]="'Select State'" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect()" [data]="statesArray" [settings]="dropdownSettings" ></ng-multiselect-dropdown>
-    </div>
-    
-
-    <div class="row cards-section" [class.d-none]="!shownChart"  >
-
-
-        <div class="col">
-
-            <a class="card wallet">
-                <div class="overlay"></div>
-            <div class="circle">
-                <p> {{totalConfirmed}} </p>
-            </div>
-            <p>Total Confirmed</p>
-            </a>
-
+        <div class="stateDropdown">        
+            <ng-multiselect-dropdown [placeholder]="'Select State'" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect()" [data]="statesArray" [settings]="dropdownSettings" ></ng-multiselect-dropdown>
         </div>
 
-
-        <div class="col">
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-            <a class="card education">
-                <div class="overlay"></div>
-            <div class="circle">
-                <p>{{activeCases}}</p>
-            </div>
-            <p>Active Cases</p>
-            </a>
-        </div>
-
-
-        <div class="col">
-
-            <a class="card credentialing">
-                <div class="overlay"></div>
-            <div class="circle">
-                <p>{{totalRecovered}}</p>
-            </div>
-            <p>Recovered Cases</p>
-            </a>
-
-        </div>
-
-
-
-
-        <div class="col">
-
-
-            <a class="card human-resources">
-                <div class="overlay"></div>
-            <div class="circle">
-                <p>{{totalDeaths}}</p>
-            </div>
-            <p>Total Deaths</p>
-            </a>
+        <div class="inner-section container-fluid" [class.d-none]="!shownChart">
 
             
 
+            <div class="row container" >
+
+                <div class="card card-confirmed col">                
+                    <h5 class="title"> <p class="delta1">{{deltaConfirmed}} &uarr; </p>  Total Cases</h5>               
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>   
+                        <h3 class="case1">{{totalConfirmed}}</h3>
+                    </div>
+                    <div class="circle">                    
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>                        
+                        </svg>
+                    </div>                
+                </div>
+
+                <div class="card card-active col">
+                    <h5 class="title"> <p class="delta2">{{deltaActive}} &uarr;</p>  Active Cases</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case2">{{activeCases}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="card card-recovered col">
+                    <h5 class="title"> <p class="delta3">{{deltaRecovered}} &uarr;</p>  Recovered Cases</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case3">{{totalRecovered}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="card card-death col">
+                    <h5 class="title"> <p class="delta4">{{deltaDeaths}} &uarr;</p>  Total Deaths</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case4">{{totalDeaths}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>   
+            
+            <div class="inbox-widget row">
+                <div id="pieChart" style="width: 100%; height: 400px"></div>
+            </div>
+
         </div>
+        
 </div>
 
+</body> -->
+
+
+<body>
+    <div class="bodyPage">    
+
+    
+
+        <app-navbar></app-navbar>
+        <h2 class="header" style="color: white;">Covid-19-Tracker State-section</h2>                
+        <h5 style="color: white; margin-top: 15px;" class="date" >Updated Date : {{date}} </h5>
+        <div class="stateDropdown">        
+            <ng-multiselect-dropdown [placeholder]="'Select State'" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect()" [data]="statesArray" [settings]="dropdownSettings" ></ng-multiselect-dropdown>
+        </div>
+        
+        <div class="inner-section container-fluid" [class.d-none]="!shownChart">
+    
+            <div class="row container">
+                            
+                <div class="card card-confirmed col-xs-4  col-sm-3 ">      
+                    
+                    <h5 class="title"> <p class="delta1">{{deltaConfirmed}} &uarr; </p>  Total Cases</h5>   
+                    
+                    <div class="bar">  
+                                          
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>   
+                        <h3 class="case1">{{totalConfirmed}}</h3>
+                        
+                    </div>
+                    
+                    <div class="circle">                    
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>                        
+                        </svg>
+                    </div>                
+                    
+                </div>
+    
+                <div class="card card-active col-xs-4  col-sm-3 ">
+                    
+                    <h5 class="title"> <p class="delta2">{{deltaActive}} &uarr;</p>  Active Cases</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case2">{{activeCases}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                </div>
+
+    
+                <div class="card card-recovered col-xs-4  col-sm-3 ">
+                    
+                    <h5 class="title"> <p class="delta3">{{deltaRecovered}} &uarr;</p>  Recovered Cases</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case3">{{totalRecovered}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                    
+                </div>
+                          
+    
+                <div class="card card-death col-xs-4  col-sm-3 ">
+                    
+                    <h5 class="title"> <p class="delta4">{{deltaDeaths}} &uarr;</p>  Total Deaths</h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                        <h3 class="case4">{{totalDeaths}}</h3>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"/>
+                        </svg>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="inbox-widget row">
+                <div id="pieChart" style="width: 100%; height: 400px"></div>
+            </div>
+            
+        </div>
+    
+    </div>
+</body>

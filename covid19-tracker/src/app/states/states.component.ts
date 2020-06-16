@@ -2,6 +2,9 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { CovidDataService } from './../services/covid-data.service';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 
 @Component({
@@ -9,12 +12,12 @@ import {NgForm} from '@angular/forms';
   templateUrl: './states.component.html',
   styleUrls: ['./states.component.css']
 })
+
 export class StatesComponent implements OnInit {
   data;
   sub;
   statesArray = [];
-  selectedItem = '';
-  shown = false;
+  selectedItem = '';  
   shownChart = false;
   selectedIndex : number;
 
@@ -24,6 +27,11 @@ export class StatesComponent implements OnInit {
   totalDeaths;
   activeCases;
   
+  deltaConfirmed;
+  deltaActive;
+  deltaRecovered;
+  deltaDeaths;
+  date;
 
   
 
@@ -32,19 +40,70 @@ export class StatesComponent implements OnInit {
   constructor(private _dataService: CovidDataService) { }
 
   ngOnInit() {
-    this._dataService.getData().subscribe(data => this.data = data);
+    this._dataService.getData().subscribe(data => {
+      this.data = data,
+      this.getDataFunc();
+      
+    });
   }
 
   getDataFunc(){
 
-    let dummyArray = [];
-    this.shown = true;
+    let dummyArray = [];    
     this.data.statewise.forEach(element => {
       dummyArray.push(element.state)
     });
     this.statesArray = dummyArray.slice(1);
     console.log(this.statesArray);
     
+
+    
+    // console.log(this.date);
+    
+    
+    
+  }
+
+  pieChart(){
+    
+
+    am4core.useTheme(am4themes_animated);
+    
+    let chart = am4core.create("pieChart", am4charts.PieChart3D);
+    chart.hiddenState.properties.opacity = 0;
+    
+
+    chart.data = [
+      {
+        category: "Active",        
+        percentage: this.activeCases ,
+        // percentage: 50 ,        
+        color: am4core.color("#E9D66B"),
+        labelColor : am4core.color("#E9D66B")
+      },
+      {
+        category: "Recovered",        
+        // percentage: 30 ,
+        percentage: this.totalRecovered,
+        color: am4core.color("#A4C639"),
+        labelColor : am4core.color("#A4C639")
+      },
+      {
+        category: "Deaths",      
+        // percentage: 20 ,
+        percentage: this.totalDeaths,
+        color: am4core.color("#7C0A02"),
+        labelColor : am4core.color("#7C0A02")
+      }
+    ];
+
+      chart.innerRadius = 60;
+      let series = chart.series.push(new am4charts.PieSeries3D());
+      series.dataFields.value = "percentage";
+      series.dataFields.category = "category";
+      series.slices.template.propertyFields.fill = "color";       
+      series.labels.template.propertyFields.fill = "labelColor"; 
+
   }
 
   dropdownSettings: IDropdownSettings = {
@@ -58,7 +117,8 @@ export class StatesComponent implements OnInit {
   
 
   onItemSelect(item: any) {
-    this.shownChart = true
+    this.shownChart = true;
+    
     // console.log(item);
     this.selectedItem = String(item)
     console.log(this.selectedItem);
@@ -73,8 +133,17 @@ export class StatesComponent implements OnInit {
     this.totalDeaths = this.actualData.deaths;
     this.totalConfirmed = this.actualData.confirmed;
 
-    console.log(typeof this.actualData);
+    this.deltaConfirmed = Number(this.actualData.deltaconfirmed);
+    this.deltaRecovered = Number(this.actualData.deltarecovered);
+    this.deltaDeaths = Number(this.actualData.deltadeaths);
+    this.deltaActive = this.deltaConfirmed - this.deltaRecovered - this.deltaDeaths;
 
+    this.date = this.actualData.lastupdatedtime.split(' ')[0];
+    console.log(this.date);
+    
+
+    console.log(this.actualData);    
+    this.pieChart();
   }
 
 
@@ -83,7 +152,6 @@ export class StatesComponent implements OnInit {
     this.selectedItem = '';
     this.actualData = {};
   }
-  
-  
 
+  
 }

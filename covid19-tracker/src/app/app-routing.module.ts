@@ -1,11 +1,12 @@
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StatesComponent } from './states/states.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 const routes: Routes = [
-  {path : '', component: DashboardComponent},
+  {path : '', component: HomeComponent},
   {path:'states', component: StatesComponent}
 ];
 

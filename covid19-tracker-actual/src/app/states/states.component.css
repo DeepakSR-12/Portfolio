@@ -1,7 +1,20 @@
-
+body{
+  background-image: linear-gradient(-90deg, #3B716C, #304255 );
+}
 
 .bodyPage{    
-  height: 600px;    
+  height: 600px;   
+  width: 100%; 
+}
+
+.header {
+  margin: 20px;
+  display: block;
+}
+
+.date{
+  margin: 20px;
+  display: block;
 }
 
 .inner-section{    
@@ -10,31 +23,24 @@
   width: 80%;
   margin-top: 5%;
   margin-left: 10%;
-  box-shadow: black;
   border: 1px solid #0D0027;
   border-radius: 20px;
   display: block;
 }
 
-.container {        
-  /* box-sizing: border-box !important; */
-  height: 45%;
-  width: 80%;
-  padding-left: 25% !important; 
-    
+.container {            
+  height: 280px;
+  width: 700px;
+  margin-left: 20%;
 }
 
 .card {
-  position: relative;
-  height: 100%;
-  width: 100%;
   background-color: #17141d;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
   transition: 0.4s ease-out;
-  position: relative;
   left: 0px;
-  z-index: 2;
+  z-index: 2;    
 }
 
 .card:not(:first-child) {
@@ -48,7 +54,6 @@
 
 .card:hover ~ .card {
   position: relative;
-  left: 50px;
   transition: 0.4s ease-out;
 }
 
@@ -215,7 +220,6 @@ svg {
 .container .card.card-confirmed:hover~.bg {
   opacity: 1;
   background: blue;
-  transition: 0.1s ease-out;
   
 }
 
@@ -241,17 +245,84 @@ svg {
   height: 100% !important;
   width: 100% !important ;
   color: white !important;
-  /* margin-top: 29%; */
 }
 
-.inbox-widget{
-  /* box-sizing: border-box ; */
+.inbox-widget{    
   margin-top : 30px;
-  height: 40%;
+  height: 240px;
   width: 100%;    
 }
 
+@media screen and (max-width: 991px){ 
 
-.header{
-  margin-top: 10px;
+  .bodyPage{
+      height: 700px;
+  }
+
+  .card{
+          box-sizing: border-box;
+          display: block;            
+          height: 280px ;            
+  }
+
+  .container {                
+      height: 300px;
+      width: 600px; 
+      margin-bottom: 100px;
+  }
+}
+
+@media only screen and (max-width: 827px) and (min-width: 766px){
+  .bodyPage{
+      width: 827px;
+  }
+}
+
+@media screen and (max-width: 726px){
+    .bodyPage{
+        height: 700px;
+    }
+
+    .card{
+      box-sizing: border-box;
+      display: block;            
+      height: 280px ;
+      width: 150px;
+       
+  }
+
+  .container {                
+      height: 300px;
+      width: 800px; 
+  }
+}
+
+@media screen and (max-width: 602px){
+    .bodyPage{
+        height: 1600px;
+    }
+
+    .container{
+        display: block;
+        height: 1100px;
+        width: 800px;
+    }
+
+    .card{
+      height: 280px ;
+      width: 150px;
+    }
+
+    .card:not(:first-child) {
+      margin-left: 0;
+    }
+    
+    .inbox-widget{    
+      margin-top : 30px;
+      height: 240px;
+      width: 100%;    
+      margin-left: 10px;
+      margin-bottom: 20px;
+    }
+    
 }
