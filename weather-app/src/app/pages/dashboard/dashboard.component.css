@@ -1,0 +1,175 @@
+.container-fluid {
+    background-color: #d84c6e;
+    height: 900px;
+    width: 100%;
+}
+
+.header{
+    color: white;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+.content{
+    position: relative;
+    left: 10%;
+    top: 200px;
+    background: black;
+    width: 80%;
+    height: 500px;
+    box-shadow: 0 12px 12px rgba(107, 92, 92, 0.07), 0 5px 5px rgba(0, 0, 0, 0.23);
+}
+
+.cityDropdown{
+    float: right;
+    position: relative;
+    right: 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+ul.menu {  
+    float: left;
+    list-style-type: none;    
+    cursor: pointer;
+}
+
+li.menu_list {
+    height: 85px;
+    width: 85px;
+    position: relative;
+}
+
+li.menu_list .front,
+a.side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 86px;
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .5s ease-out;
+    cursor: pointer;
+}
+
+li.menu_list .front {
+    background-color: #000;
+    color: #d84c6e;
+    transform-origin: 0 0;
+}
+
+a.side {
+    background-color: #d84c6e;
+    color: #000;
+    transform-origin: 0 0 85px;
+    transform: rotateY(-90deg);
+}
+
+li.menu_list:hover a.side {
+    transform: rotateY(0deg);
+    
+}
+
+li.menu_list:hover .front {
+    transform: rotateY(90deg);
+    
+}
+
+/* .top-bar-shape{
+    display: block;
+    color: white;
+    height: 50px;
+    width: 600px;
+    background-color: #000;    
+    position: relative;
+    left: 670px;
+    top: 100px;
+    border: 1px solid black;
+    border-radius: 30px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;     
+} */
+
+.top-bar {
+    height: 60px;
+    width: 100%;
+    background: black;
+}
+
+.card{
+    position: relative;
+    left: 30%;
+    height: 400px;
+    width: 300px;
+    background: black;
+    border: 1px solid white;
+    box-shadow: 5px 5px rgba(216, 76, 110, 0.4),
+              10px 10px rgba(216, 76, 110, 0.3),
+              15px 15px rgba(216, 76, 110, 0.2),
+              20px 20px rgba(216, 76, 110, 0.1),
+              25px 25px rgba(216, 76, 110, 0.05);     
+}
+
+
+.card-header{
+    display: block;
+    height: 100px;
+    color: white;
+    text-align: center;
+}
+
+.spinner{
+    color: white;
+    /* position: relative; */
+    text-align: center;
+
+}
+
+.card-temperature{
+    display: inline;
+    color: white;
+}
+
+@media screen and (max-width: 1024px){
+    .card{
+        left: 20%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .card-header{
+        font-size: xx-large;
+    }
+
+    .card{
+        left: 15%;
+        height: 300px;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 505px){
+    .card-header{
+        font-size: x-large;
+    }
+
+    .card{
+        left: 5%;
+        height: 200px;
+        width: 150px;
+    }
+
+    .card-temperature{
+        font-size: large;
+    }
+}

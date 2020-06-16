@@ -1,0 +1,61 @@
+.cityDropdown .multiselect-dropdown .dropdown-btn {
+    margin-top: 20px;
+    width: 200px !important; 
+    border: none !important;
+    border-radius: none !important;
+    color: black;
+    padding-bottom: 10px !important;
+    /* border-bottom: 1px solid black !important; */
+    box-shadow: 0 12px 12px rgba(107, 92, 92, 0.07), 0 5px 5px rgba(0, 0, 0, 0.23);
+    border-radius: 0px !important;
+  }
+  
+  
+  .cityDropdown .multiselect-dropdown .dropdown-list{
+    width: 200px !important;
+  }
+  
+
+  .cityDropdown a{
+    display: none;
+    position: absolute !important;
+  }
+  
+  .cityDropdown .multiselect-dropdown .dropdown-btn .selected-item{
+    color: black !important;
+    border: none !important;
+  }
+  
+  .cityDropdown .multiselect-dropdown .dropdown-btn .selected-item:hover{
+    box-shadow: none !important;
+  }
+  
+  
+  .cityDropdown .multiselect-item-checkbox :before {
+    display: none !important;
+  
+  }
+  .cityDropdown .multiselect-item-checkbox :after {
+    display: none !important; 
+  }
+  
+  .cityDropdown .multiselect-item-checkbox div{
+    padding-left: 0px !important;
+    
+  }
+  
+  .cityDropdown .multiselect-dropdown .dropdown-btn .dropdown-down{
+    border-top: 8px solid #adadad !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+  }
+  
+  .cityDropdown .multiselect-dropdown .dropdown-btn .dropdown-up{
+    border-bottom: 8px solid #adadad !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+  }
+
+  .cityDropdown .multiselect-dropdown .dropdown-btn .selected-item{
+    background: none !important;
+  }

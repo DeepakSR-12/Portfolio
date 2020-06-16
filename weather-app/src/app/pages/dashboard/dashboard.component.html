@@ -1,0 +1,56 @@
+
+
+
+<div class="container-fluid">
+
+    <div class="top-bar">
+        <div class="header">Weather</div>
+    </div>
+
+    <div class="cityDropdown">        
+        <ng-multiselect-dropdown [placeholder]="'Select City'" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect()" [data]="citiesObject" [settings]="dropdownSettings"></ng-multiselect-dropdown>
+    </div>    
+
+    <div class="content">        
+    
+        <div class="menu-div">
+            <ul class="menu">
+                <li class="menu_list">
+                    <span class="front fas fa-home"></span>
+                    <a href="#" class="side">home</a>
+                </li>
+                <li class="menu_list">
+                    <span class="front fas fa-info-circle"></span>
+                    <a href="https://github.com/DeepakSR12/Portfolio" target="_blank" class="side">About</a>
+                </li>            
+                <li class="menu_list">
+                    <span class="front fas fa-briefcase"></span>
+                    <a href="https://covid19-tracker-c30f3.web.app/" target="_blank" class="side">projects</a>
+                </li>
+                <li class="menu_list">
+                    <span class="front fas fa-paper-plane"></span>
+                    <a href="http://cruiseoblive.pythonanywhere.com/" target="_blank" class="side">contact</a>
+                </li>
+            </ul>    
+        </div>
+    
+        <div class="card">
+
+        
+            <h1 class="card-header">
+                {{selectedCity}}
+            </h1>
+            <p class="spinner" [class.d-none]="!spinnerShown">
+                <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
+            </p>
+            <h3 class="card-temperature">
+                {{temperature}}
+            </h3>
+
+
+        </div>
+        
+
+    </div>
+           
+</div>
